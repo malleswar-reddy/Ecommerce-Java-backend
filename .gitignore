@@ -1,0 +1,15 @@
+/gatewayservice/.gitattributes
+/inventoryservice/adminservice/.gitattributes
+/inventoryservice/.gitattributes
+/notificationservice/.gitattributes
+/orderservice/.gitattributes
+/paymentservice/.gitattributes
+/productservice/.gitattributes
+/sellerservice/.gitattributes
+/shippingservice/.gitattributes
+/userservice/.gitattributes
+/.idea/.gitignore
+/.idea/Ecommerce-Java-backend.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
