@@ -1,0 +1,198 @@
+
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: DEMO_DB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  config-server:
+    build:
+      context: ./config-server
+    image: config-server:latest
+    container_name: config_server
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+
+  eureka-server:
+    build:
+      context: ./eureka-server
+    image: eureka-server:latest
+    container_name: eureka_server
+    ports:
+      - "8761:8761"
+    depends_on:
+      - config-server
+
+  gateway-service:
+    build:
+      context: ./gateway-service
+    image: gateway-service:latest
+    container_name: gateway_service
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+    depends_on:
+      - config-server
+      - eureka-server
+
+  user-service:
+    build:
+      context: ./user-service
+    image: user-service:latest
+    container_name: user_service
+    ports:
+      - "9001:9001"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/user_db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+
+
+
+  order-service:
+    build:
+      context: ./order-service
+    image: order-service:latest
+    container_name: order_service
+    ports:
+      - "9006:9006"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/order_db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+
+
+
+
+
+  inventory-service:
+    build:
+      context: ./inventory-service
+    image: inventory-service:latest
+    container_name: inventory_service
+    ports:
+      - "9004:9004"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/inventory_db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+
+
+  seller-service:
+    build:
+      context: ./seller-service
+    image: seller-service:latest
+    container_name: seller_service
+    ports:
+      - "9002:9002"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/seller_db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+
+  notification-service:
+    build:
+      context: ./notification-service
+    image: notification-service:latest
+    container_name: notification_service
+    ports:
+      - "9008:9008"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+    depends_on:
+      - config-server
+      - eureka-server
+
+
+  payment-service:
+    build:
+      context: ./payment-service
+    image: payment-service:latest
+    container_name: payment_service
+    ports:
+      - "9007:9007"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/payment_db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+
+  product-service:
+    build:
+      context: ./product-service
+    image: product-service:latest
+    container_name: product_service
+    ports:
+      - "9003:9003"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/product_db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+
+  shipping-service:
+    build:
+      context: ./shipping-service
+    image: shipping-service:latest
+    container_name: shipping_service
+    ports:
+      - "9009:9009"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/shipping_db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+volumes:
+  postgres_data:
