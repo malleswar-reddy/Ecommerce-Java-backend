@@ -10,6 +10,9 @@
 /userservice/.gitattributes
 /.idea/.gitignore
 /.idea/Ecommerce-Java-backend.iml
-/.idea/misc.xml
+/.idea/*
 /.idea/modules.xml
 /.idea/vcs.xml
+*/target/
+/gatewayservice/target/
+*/.mvn/
