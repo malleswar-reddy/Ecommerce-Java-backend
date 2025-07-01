@@ -101,3 +101,18 @@ docker run -d \
 -v postgres_data:/var/lib/postgresql/data \
 postgres:latest
 
+
+
+
+
+🔨 Build Images for compose files(if you have Dockerfile in project)
+
+docker-compose build
+▶️ Start All Containers
+docker-compose up
+
+⏱ Run in Detached Mode
+docker-compose up -d
+
+❌ Stop & Remove All
+docker-compose down
