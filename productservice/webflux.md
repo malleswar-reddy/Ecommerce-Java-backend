@@ -102,3 +102,12 @@ Flux<T>
 A stream of multiple items
 Mono<T>: Represents a single value or no value (like an Optional or a Promise).
 Flux<T>: Represents a stream of 0 to many values (like a List or a stream of events).
+
+
+# CSV File Handling in Java
+When dealing with CSV files in Java, the approach you choose depends on the file size and memory constraints. Here’s a quick guide:
+
+File Size	Approach	Library/Method
+Small	Load all into memory	Apache Commons CSV / OpenCSV
+Large	Stream line by line	BufferedReader
+Very Large	Stream + batch DB inserts	BufferedReader + batch saving

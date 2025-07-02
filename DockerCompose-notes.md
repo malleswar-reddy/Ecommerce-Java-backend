@@ -23,3 +23,5 @@ docker system prune
 docker-compose -f docker-compose.yml run -d postgres
 
 docker-compose -f docker-compose.yml build admin-service
+
+

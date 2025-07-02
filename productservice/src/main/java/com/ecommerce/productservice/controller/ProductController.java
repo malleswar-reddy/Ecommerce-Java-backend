@@ -1,32 +1,21 @@
 package com.ecommerce.productservice.controller;
 
-import com.ecommerce.productservice.model.Product;
 import com.ecommerce.productservice.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    @PostMapping
-    public Mono<Product> create(@RequestBody Product product) {
-        return productService.saveProduct(product);
-    }
-
-    @GetMapping
-    public Flux<Product> getAll() {
-        return productService.getAllProducts();
-    }
-
-    @PostMapping("/upload")
-    public Flux<Product> uploadCSV(@RequestPart("file") FilePart filePart) {
-        return productService.saveAllFromCSV(filePart);
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Mono<String> uploadCSV(@RequestPart("file") FilePart filePart) {
+        return productService.uploadCSV(filePart);
     }
 }
