@@ -86,3 +86,6 @@ Here is your content in Markdown format for `README.md`:
 | `git stash` | Save uncommitted changes temporarily |
 | `git stash list` | Show stashed changes |
 | `git stash apply` | Re-apply stashed changes |
+|         |             |
+
+| `git stash pop` | Re-apply and remove stashed changes |
