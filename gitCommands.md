@@ -88,4 +88,4 @@ Here is your content in Markdown format for `README.md`:
 | `git stash apply` | Re-apply stashed changes |
 |         |             |
 
-| `git stash pop` | Re-apply and remove stashed changes |
+| 
