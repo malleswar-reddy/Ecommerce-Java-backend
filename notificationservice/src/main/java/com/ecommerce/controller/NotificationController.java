@@ -1,10 +1,13 @@
-package com.ecommerce.notificationservice.controller;
+package com.ecommerce.controller;
 
 
-import com.ecommerce.notificationservice.service.EmailService;
+import com.ecommerce.service.EmailService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/notify")
@@ -30,7 +33,6 @@ public class NotificationController {
             return "❌ Failed to send email to user";
         }
     }
-
 
 
 }
