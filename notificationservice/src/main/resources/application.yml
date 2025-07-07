@@ -1,0 +1,17 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: vamsikrishnach2000@gmail.com
+    password: xpnnjuardpjuwlkf
+
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+admin:
+  email: vamsikrishnach9848@gmail.com

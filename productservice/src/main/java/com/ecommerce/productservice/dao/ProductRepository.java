@@ -1,9 +1,7 @@
 package com.ecommerce.productservice.dao;
 
 import com.ecommerce.productservice.model.Product;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
-@Repository
-public interface ProductRepository extends R2dbcRepository<Product, Long> {
+public interface ProductRepository extends ReactiveCrudRepository<Product, Long> {
 }

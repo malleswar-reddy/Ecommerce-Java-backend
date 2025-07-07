@@ -1,7 +1,10 @@
-CREATE TABLE IF NOT EXISTS products (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
-    description VARCHAR(255),
-    price DOUBLE PRECISION,
-    quantity INT
+CREATE TABLE product (
+  id SERIAL PRIMARY KEY,
+  user_id TEXT,
+  product_id TEXT,
+  product_url TEXT,
+  image_url TEXT,
+  price TEXT,
+  rating INT,
+  timestamp BIGINT
 );
