@@ -1,0 +1,14 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/malleswar-reddy/config-service
+          clone-on-start: true
+          default-label: release
+          search-paths: config-data
+            #username: <your-git-username>
+          #password: <your-git-password>
