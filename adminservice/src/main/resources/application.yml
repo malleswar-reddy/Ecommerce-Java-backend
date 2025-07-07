@@ -1,17 +1,13 @@
 spring:
   application:
     name: adminservice
-  r2dbc:
-    url: r2dbc:postgresql://postgres:5432/seller_db
-    username: postgres
-    password: Kr12@984872
-    pool:
-      max-size: 20
-      initial-size: 5
-      validation-query: SELECT 1
-    connection-factory:
-      type: io.r2dbc.spi.ConnectionFactory
+  config:
+    import: "configserver:"
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
 
-server:
-  port: 8080
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

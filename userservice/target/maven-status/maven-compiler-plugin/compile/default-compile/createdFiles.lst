@@ -1,1 +1,15 @@
+com\ecommerce\userservice\entity\User.class
+com\ecommerce\userservice\util\JwtUtil.class
+com\ecommerce\userservice\util\SecurityConfig.class
+com\ecommerce\userservice\dtos\AuthResponse.class
+com\ecommerce\userservice\controller\UserController.class
+com\ecommerce\userservice\dtos\UserProfile$UserProfileBuilder.class
+com\ecommerce\userservice\dtos\LoginRequest.class
+com\ecommerce\userservice\util\JwtKeyGenerator.class
 com\ecommerce\userservice\UserserviceApplication.class
+com\ecommerce\userservice\entity\User$UserBuilder.class
+com\ecommerce\userservice\dtos\UserProfile.class
+com\ecommerce\userservice\repository\UserRepository.class
+com\ecommerce\userservice\dtos\RegisterRequest.class
+com\ecommerce\userservice\service\UserService.class
+com\ecommerce\userservice\service\UserServiceImpl.class

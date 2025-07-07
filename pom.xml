@@ -15,6 +15,8 @@
         <module>productservice</module>
         <module>paymentservice</module>
         <module>sellerservice</module>
+        <module>EurekaDiscoveryService</module>
+        <module>ConfigServerService</module>
         <module>paymentservicetodo</module>
     </modules>
 </project>
