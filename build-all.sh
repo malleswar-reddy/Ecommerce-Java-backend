@@ -19,3 +19,7 @@ echo "Docker image building completed  $1..."
 #run docker container
 
 docker-compose -f docker-compose.yml up -d "$1"
+
+
+
+
